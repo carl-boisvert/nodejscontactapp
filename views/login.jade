@@ -1,0 +1,14 @@
+extends layout
+
+block content
+	div.container
+		div.col-sm-12.col-md-8.col-lg-4.col-md-offset-2.col-lg-offset-4
+			form(action="/login",name="login", method="post")
+				div.form-group
+					label Username
+					input(type="text", name="username",class="form-control")
+				div.form-group
+					label Password
+					input(type="password", name="password",class="form-control")
+				div.actions
+					input(class="btn btn-primary",type="submit", value="add")
