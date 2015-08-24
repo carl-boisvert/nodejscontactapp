@@ -24,7 +24,11 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(user, done) {
-  done(null, user);
+    User.findById(user._id)
+        .populate('contacts')
+        .exec(function (err, user) {
+            done(err, user);
+        });
 });
 
 router.get('/',function(req,res){

@@ -6,10 +6,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var util = require("util");
 var passport = require("passport");
+var session = require('express-session')
 
 var routes = require('./routes/index');
 var loginRoutes = require('./routes/login');
 var registerRoute = require('./routes/register');
+var contactRoutes = require('./routes/contact');
+var userRoutes = require('./routes/users');
 
 var app = express();
 
@@ -23,13 +26,22 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({ secret: 'llamabawsinthedesert', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req,res,next){
+res.locals.user = req.user;
+next();
+});
+
+
 app.use('/', routes);
 app.use('/register', registerRoute);
 app.use('/login', loginRoutes);
+app.use('/contacts', contactRoutes);
+app.use('/users', userRoutes);
 
 
 // catch 404 and forward to error handler

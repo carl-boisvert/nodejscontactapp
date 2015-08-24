@@ -7,5 +7,34 @@ html
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
         script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
     body
-
-    block content
+        nav.navbar.navbar-default
+            div.container-fluid
+                div.navbar-header
+                    button(type="button",class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false")
+                        span.sr-only
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand brand
+                div.collapse.navbar-collapse#bs-example-navbar-collapse-1
+                    ul.nav.navbar-nav.navbar-right
+                        if (typeof(user) == 'undefined')
+                            li
+                                a(href="/login") login
+                        li
+                            a(href="#") link
+                        //
+                            li
+                                a(class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Dropdown 
+                                    span.carret
+                                ul.dropdown-menu
+                                    li
+                                        a Action
+                                    li
+                                        a Another action
+                                    li
+                                        a Something else here
+                                    li(role="separator", class="divider")
+                                    li
+                                        a Seperated link
+        block content

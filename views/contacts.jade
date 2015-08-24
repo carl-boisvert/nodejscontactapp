@@ -1,0 +1,8 @@
+extends layout
+
+block content
+    h1 Contact of #{user.name}
+    ul
+        each contact in user.contacts
+            li
+                a(href="/users/"+contact._id)= contact.name

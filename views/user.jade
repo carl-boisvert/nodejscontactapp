@@ -1,0 +1,10 @@
+extends layout
+block content
+    h1 User #{user.name}
+    h4 Email
+        p #{user.email}
+    h4 Contacts
+        ul
+            each contact in user.contacts
+                li
+                    a(href="/users/" + contact._id)= contact.name
